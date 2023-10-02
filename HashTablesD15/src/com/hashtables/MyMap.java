@@ -4,7 +4,7 @@ package com.hashtables;
 import java.util.LinkedList;
 
 public class MyMap {
-    LinkedList<MyMapNode>[] linkedLists;
+    private LinkedList<MyMapNode>[] linkedLists;
 
     public MyMap(int size) {
         linkedLists = new LinkedList[size];
@@ -13,7 +13,7 @@ public class MyMap {
         }
     }
 
-    public void put(String key, int value) {
+    public void put(String key, boolean value) {
         int index = key.hashCode() % linkedLists.length;
         LinkedList<MyMapNode> linkedList = linkedLists[index];
 
@@ -21,7 +21,7 @@ public class MyMap {
         linkedList.add(node);
     }
 
-    public int get(String key) {
+    public boolean get(String key) {
         int index = key.hashCode() % linkedLists.length;
         LinkedList<MyMapNode> linkedList = linkedLists[index];
 
@@ -30,12 +30,10 @@ public class MyMap {
                 return node.getValue();
             }
         }
-        return -1;
+        return false;
     }
 
     public boolean containsKey(String key) {
-        return get(key) != -1;
+        return get(key);
     }
 }
-
-
